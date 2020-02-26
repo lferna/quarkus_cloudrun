@@ -1,5 +1,8 @@
 steps:
 - name: gcr.io/cloud-builders/docker
-  args: ['build', '-t', 'gcr.io/alpine-comfort-268715/cloudrun-demo:${SHORT_SHA}', '.']
+  args: ['build', '-t', 'gcr.io/alpine-comfort-268715/quarkus-ms-demo:${SHORT_SHA}', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ["push", "gcr.io/alpine-comfort-268715/cloudrun-demo"]
+  args: ["push", "gcr.io/alpine-comfort-268715/quarkus-ms-demo"]
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'quarkus-ms-demo', '--image', 'gcr.io/alpine-comfort-268715/quarkus-ms-demo:${SHORT_SHA}', '--region', 'us-central1']
+  
