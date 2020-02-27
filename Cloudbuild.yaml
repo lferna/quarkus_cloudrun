@@ -22,5 +22,6 @@ steps:
   - 'CLOUDSDK_CONTAINER_CLUSTER=quarkus'
 #- name: 'gcr.io/cloud-builders/gcloud'
 #  args: ['beta', 'run', 'deploy', 'quarkus-ms-demo','--platform','managed','--allow-unauthenticated', '--image', 'gcr.io/alpine-comfort-268715/quarkus-ms-demo:${SHORT_SHA}', '--region', 'us-central1','--set-env-vars','DISABLE_SIGNAL_HANDLERS=foobar']  
+
   
     
