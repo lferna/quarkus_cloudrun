@@ -1,9 +1,26 @@
 steps:
 - name: gcr.io/cloud-builders/docker
-  args: ['build', '-t', 'gcr.io/alpine-comfort-268715/quarkus-ms-demo:${SHORT_SHA}', '.']
+  args: ['build', '-t', 'gcr.io/alpine-comfort-268715/quarkus-ms-demo:$BRANCH_NAME-$COMMIT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ["push", "gcr.io/alpine-comfort-268715/quarkus-ms-demo"]
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'quarkus-ms-demo','--platform','managed','--allow-unauthenticated', '--image', 'gcr.io/alpine-comfort-268715/quarkus-ms-demo:${SHORT_SHA}', '--region', 'us-central1','--set-env-vars','DISABLE_SIGNAL_HANDLERS=foobar']  
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'k8s/']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=quarkus'
+#step 4
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: [
+   'set', 
+   'image', 
+   'deployment', 
+   'quarkus-ms-demo', 
+   'quarkus-ms-demo=gcr.io/alpine-comfort-268715/quarkus-ms-demo:$BRANCH_NAME-$COMMIT_SHA'
+  ]
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=quarkus'
+#- name: 'gcr.io/cloud-builders/gcloud'
+#  args: ['beta', 'run', 'deploy', 'quarkus-ms-demo','--platform','managed','--allow-unauthenticated', '--image', 'gcr.io/alpine-comfort-268715/quarkus-ms-demo:${SHORT_SHA}', '--region', 'us-central1','--set-env-vars','DISABLE_SIGNAL_HANDLERS=foobar']  
   
     

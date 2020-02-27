@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: quarkus-ms-demo
+spec:
+  selector:
+     run: quarkus-ms-demo
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
