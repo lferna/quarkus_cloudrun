@@ -35,6 +35,6 @@ public class SaludosController {
   @Produces(MediaType.TEXT_PLAIN)
   public String hello() {
 
-    return "hello";
+    return "hola";
   }
 }

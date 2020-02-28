@@ -5,8 +5,9 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class SaludosService {
 
-    public String greeting(String name) {
-        return "hello " + name;
-    }
+  public String greeting(String name) {
+
+    return "hola " + name;
+  }
 
 }
