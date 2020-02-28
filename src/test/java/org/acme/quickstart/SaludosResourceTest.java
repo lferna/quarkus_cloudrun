@@ -16,10 +16,10 @@ public class SaludosResourceTest {
   public void testHelloEndpoint() {
 
     given()
-        .when().get("/hello")
+        .when().get("/hola")
         .then()
         .statusCode(200)
-        .body(is("hello"));
+        .body(is("hola"));
   }
 
   @Test
@@ -28,10 +28,10 @@ public class SaludosResourceTest {
     String uuid = UUID.randomUUID().toString();
     given()
         .pathParam("name", uuid)
-        .when().get("/hello/greeting/{name}")
+        .when().get("/hola/{name}")
         .then()
         .statusCode(200)
-        .body(is("hello " + uuid));
+        .body(is("hola " + uuid));
   }
 
 }
