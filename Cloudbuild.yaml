@@ -20,8 +20,10 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=quarkus'
-#- name: 'gcr.io/cloud-builders/gcloud'
-#  args: ['beta', 'run', 'deploy', 'quarkus-ms-demo','--platform','managed','--allow-unauthenticated', '--image', 'gcr.io/alpine-comfort-268715/quarkus-ms-demo:${SHORT_SHA}', '--region', 'us-central1','--set-env-vars','DISABLE_SIGNAL_HANDLERS=foobar']  
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'quarkus-ms-demo','--platform','managed','--allow-unauthenticated', '--image', 'gcr.io/alpine-comfort-268715/quarkus-ms-demo:${SHORT_SHA}', '--region', 'us-central1','--set-env-vars','DISABLE_SIGNAL_HANDLERS=foobar']
+options:
+ machineType: 'N1_HIGHCPU_8'
 
   
     
