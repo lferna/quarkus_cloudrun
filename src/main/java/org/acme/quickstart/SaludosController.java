@@ -25,16 +25,13 @@ public class SaludosController {
 
   @GET
   @Produces(MediaType.TEXT_PLAIN)
-  @Path("/{name}")
-  public String greeting(@PathParam String name) {
-
-    return this.service.greeting(name);
+  @Path("/{nombre}")
+  public String crearSaludo(@PathParam String nombre) {
+    this.service.crearSaludo(nombre);
+    String salida="Hola "+nombre+". Tu saludo ha sido guardado. ";
+    Long numero = this.service.contarSaludo(nombre);
+    salida+="Llevas: "+numero+" saludos.";
+    return salida;
   }
 
-  @GET
-  @Produces(MediaType.TEXT_PLAIN)
-  public String hello() {
-
-    return "hola";
-  }
 }

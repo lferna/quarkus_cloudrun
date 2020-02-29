@@ -45,6 +45,15 @@
       <artifactId>quarkus-smallrye-openapi</artifactId>
       <version>${quarkus.version}</version>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-jdbc-postgresql</artifactId>
+      <version>${quarkus.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-hibernate-orm</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

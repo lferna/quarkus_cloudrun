@@ -13,16 +13,6 @@ import io.quarkus.test.junit.QuarkusTest;
 public class SaludosResourceTest {
 
   @Test
-  public void testHelloEndpoint() {
-
-    given()
-        .when().get("/hola")
-        .then()
-        .statusCode(200)
-        .body(is("hola"));
-  }
-
-  @Test
   public void testSaludosEndpoint() {
 
     String uuid = UUID.randomUUID().toString();
@@ -31,7 +21,7 @@ public class SaludosResourceTest {
         .when().get("/hola/{name}")
         .then()
         .statusCode(200)
-        .body(is("hola " + uuid));
+        .body(is("Tu saludo ha sido guardado"));
   }
 
 }
