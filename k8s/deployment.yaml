@@ -34,7 +34,7 @@ spec:
               secretKeyRef:
                 name: cloudsql-db-credentials
                 key: username
-	     # [END cloudsql_secrets]
+         # [END cloudsql_secrets]
         ports:
         - containerPort: 8080
       - image: gcr.io/cloudsql-docker/gce-proxy:1.09
@@ -48,8 +48,8 @@ spec:
            mountPath: /etc/ssl/certs
          - name: cloudsql
            mountPath: /cloudsql
-	    # [END proxy_container]
-	    # [START volumes]
+        # [END proxy_container]
+        # [START volumes]
      volumes:
       - name: cloudsql-instance-credentials
         secret:
