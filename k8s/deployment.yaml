@@ -14,48 +14,8 @@ spec:
       labels:
         run: quarkus-ms-demo
     spec:
-     nodeSelector:
-        cloud.google.com/gke-nodepool: default-pool
-     containers:
+      containers:
       - image: gcr.io/alpine-comfort-268715/quarkus-ms-demo:latest
         name: quarkus-ms-demo
-        env:
-          - name: DB_HOST
-            value: 127.0.0.1
-            # These secrets are required to start the pod.
-           # [START cloudsql_secrets]
-          - name: DB_PASSWORD
-            valueFrom:
-            secretKeyRef:
-              name: cloudsql-db-credentials
-              key: password
-          - name: DB_USER
-            valueFrom:
-              secretKeyRef:
-                name: cloudsql-db-credentials
-                key: username
-         # [END cloudsql_secrets]
         ports:
         - containerPort: 8080
-      - image: gcr.io/cloudsql-docker/gce-proxy:1.09
-        name: cloudsql-proxy
-        command: ["/cloud_sql_proxy", "-instances=alpine-comfort-268715:us-central1:quarkus-db=tcp:5432","-credential_file=/secrets/cloudsql/private.json"]
-        volumeMounts:
-         - name: cloudsql-instance-credentials
-           mountPath: /secrets/cloudsql
-           readOnly: true
-         - name: ssl-certs
-           mountPath: /etc/ssl/certs
-         - name: cloudsql
-           mountPath: /cloudsql
-        # [END proxy_container]
-        # [START volumes]
-     volumes:
-      - name: cloudsql-instance-credentials
-        secret:
-         secretName: cloudsql-instance-credentials
-      - name: ssl-certs
-        hostPath:
-         path: /etc/ssl/certs
-      - name: cloudsql
-        emptyDir:
