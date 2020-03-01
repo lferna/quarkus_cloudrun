@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: quarkus-ms-demo
+  name: quarkus-ms-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: quarkus-ms-demo
+  template:
+    metadata:
+      labels:
+        run: quarkus-ms-demo
+    spec:
+      containers:
+      - image: gcr.io/alpine-comfort-268715/quarkus-ms-demo:latest
+        name: quarkus-ms-demo
+        ports:
+        - containerPort: 8080
