@@ -10,30 +10,33 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "saludos")
 public class Saludos {
+  // comentario
+  @Id
+  @Column(name = "id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(name="nombre")
-	private String nombre;
+  @Column(name = "nombre")
+  private String nombre;
 
-    public String getNombre() {
-        return nombre;
-    }
+  public String getNombre() {
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    return this.nombre;
+  }
 
-	public Long getId() {
-		return id;
-	}
+  public void setNombre(String nombre) {
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-    
-    
+    this.nombre = nombre;
+  }
+
+  public Long getId() {
+
+    return this.id;
+  }
+
+  public void setId(Long id) {
+
+    this.id = id;
+  }
+
 }
