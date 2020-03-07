@@ -1,0 +1,3 @@
+runtime: java11
+instance_class: F1
+entrypoint: './target/getting-started-1.0-SNAPSHOT-runner.jar'
