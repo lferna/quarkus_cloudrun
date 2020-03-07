@@ -3,6 +3,9 @@ steps:
   args: ['build', '-t', 'gcr.io/alpine-comfort-268715/quarkus-ms-demo:$BRANCH_NAME-$COMMIT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ["push", "gcr.io/alpine-comfort-268715/quarkus-ms-demo"]
+- name: "gcr.io/cloud-builders/gcloud"
+  args: ["app", "deploy"]
+timeout: "1600s"  
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'k8s/']
   env:
