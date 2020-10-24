@@ -13,7 +13,8 @@ FROM registry.access.redhat.com/ubi8/ubi-minimal
 WORKDIR /work/
 #COPY --from=build /usr/src/app/target/*-runner /work/application
 COPY --from=build /usr/src/app/target/*-bootified.jar /work/application/app.jar
-RUN chmod 775 /work
+RUN chmod 777 /work
+RUN chmod 777 /work/application/app.jar
 EXPOSE 8080
 CMD ["./application/app.jar", "-Dquarkus.http.host=0.0.0.0"]
 
