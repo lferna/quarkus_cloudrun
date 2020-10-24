@@ -42,7 +42,7 @@ RUN microdnf install openssl curl ca-certificates ${JAVA_PACKAGE} \
 ENV JAVA_OPTIONS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
 
 #COPY target/lib/* /deployments/lib/
-COPY target/*-bootified.jar /deployments/app.jar
+COPY --from=build /usr/src/app/target/*-bootified.jar /deployments/app.jar
 
 EXPOSE 8080
 USER 1001
