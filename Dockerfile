@@ -12,7 +12,8 @@ RUN mvn -f /usr/src/app/pom.xml clean package -DskipTests
 FROM registry.access.redhat.com/ubi8/ubi-minimal
 WORKDIR /work/
 #COPY --from=build /usr/src/app/target/*-runner /work/application
-COPY --from=build /usr/src/app/target/*-runner.jar /work/application
+COPY --from=build /usr/src/app/target/*-runner.jar /work/application/app.jar
 RUN chmod 775 /work
 EXPOSE 8080
-CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
+#CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
+ENTRYPOINT [ "/deployments/run-java.sh" ]
