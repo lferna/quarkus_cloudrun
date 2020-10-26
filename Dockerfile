@@ -17,8 +17,8 @@ RUN mvn -f /usr/src/app/pom.xml clean package -DskipTests
 #EXPOSE 8080
 #CMD ["./application/app.jar", "-Dquarkus.http.host=0.0.0.0"]
 
-FROM openjdk:8
-#FROM quay.io/pires/docker-jre:8u191
+#FROM openjdk:8
+FROM quay.io/pires/docker-jre:8u191
 EXPOSE 8080
 RUN mkdir /app
 COPY --from=build /usr/src/app/target/*-bootified.jar /app/app.jar
